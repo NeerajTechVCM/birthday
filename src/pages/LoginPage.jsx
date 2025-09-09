@@ -4,8 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginPage({ onContinue }) {
-  const [email, setEmail] = useState("anjali@kabrion.com");
-  const [password, setPassword] = useState("Anjali@123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [profilePic, setProfilePic] = useState(null);
 
   const handleLogin = () => {
