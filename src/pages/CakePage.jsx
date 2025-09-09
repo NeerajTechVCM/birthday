@@ -1,3 +1,4 @@
+// CakePage.jsx
 import React, { useState, useEffect } from "react";
 import Balloons from "../components/Balloons";
 import Cake from "../components/Cake";
@@ -7,9 +8,9 @@ export default function CakePage() {
   const [candlesBlown, setCandlesBlown] = useState(false);
   const [countdown, setCountdown] = useState(null);
 
+  // Trigger countdown on button click
   function handleBlowCandles() {
-    // Start countdown from 5
-    setCountdown(5);
+    setCountdown(5); // start countdown from 5
   }
 
   // Countdown effect
@@ -20,7 +21,7 @@ export default function CakePage() {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
     } else {
-      // Countdown finished → show fireworks and greeting
+      // Countdown finished → show fireworks, greeting, and cake image change
       setCandlesBlown(true);
     }
   }, [countdown]);
@@ -32,8 +33,18 @@ export default function CakePage() {
 
       {/* Cake */}
       <div className="relative z-20 w-full max-w-2xl">
-        <Cake onBlowCandles={handleBlowCandles} />
+        <Cake candlesBlown={candlesBlown} countdown={countdown} />
       </div>
+
+      {/* Blow Candles Button */}
+      {!candlesBlown && countdown === null && (
+        <button
+          onClick={handleBlowCandles}
+          className="mt-6 px-6 py-3 bg-amber-400 rounded-2xl font-semibold shadow hover:scale-105 transition z-30"
+        >
+          Blow Candles 🎂
+        </button>
+      )}
 
       {/* Countdown Display */}
       {countdown !== null && countdown > 0 && (
